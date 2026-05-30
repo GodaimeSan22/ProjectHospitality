@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT HOSPITALITY — Ultra-Luxury Venture & Yield Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --text-light: #F9F8F6;
+            --gold-primary: #D4AF37;
+            --gold-muted: #9A7B36;
+            --glass-bg: rgba(15, 15, 15, 0.45);
+            --glass-border: rgba(212, 175, 55, 0.08);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Background Light (Interactive via JS) */
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(154, 123, 54, 0.05) 0%, rgba(0,0,0,0) 70%);
+            top: -300px;
+            left: -300px;
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+            mix-blend-mode: screen;
+        }
+
+        /* Film Grain & Noise Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            opacity: 0.02;
+            pointer-events: none;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=100&q=80');
+        }
+
+        /* PREMIUM LIQUID TEXT GOLD EFFECT */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 30%, var(--gold-primary) 70%, #F9F8F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* INTERACTIVE NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(7, 7, 7, 0.75);
+            backdrop-filter: blur(20px);
+            border-b: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 6%;
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: tracking 0.3s;
+        }
+        .logo span { font-weight: 700; color: var(--gold-primary); }
+
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            color: var(--text-light);
+            opacity: 0.4;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--gold-primary); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { opacity: 1; }
+
+        .btn-nav {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(214, 175, 55, 0.3); background: rgba(214, 175, 55, 0.02);
+            color: var(--gold-primary); padding: 12px 26px; text-decoration: none;
+            text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.2em;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-nav:hover {
+            border-color: var(--gold-primary); background: var(--gold-primary); color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(214, 175, 55, 0.2);
+        }
+
+        /* HERO AREA */
+        .hero {
+            height: 100vh; display: flex; align-items: center; padding: 0 6%;
+            position: relative; overflow: hidden; z-index: 2;
+        }
+
+        .leaf-particle {
+            position: absolute; pointer-events: none; z-index: 10; opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr; align-items: center;
+            width: 100%; max-width: 1400px; margin: 0 auto;
+        }
+        @media (min-width: 992px) { .hero-grid { grid-template-columns: 1.25fr 0.85fr; gap: 80px; } }
+
+        .hero-left h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 300; line-height: 1.02; margin-bottom: 30px;
+            letter-spacing: -0.01em;
+        }
+        .hero-left h1 span { font-style: italic; }
+
+        .hero-left p {
+            color: rgba(249, 248, 246, 0.6); font-weight: 200; line-height: 1.75;
+            max-width: 620px; margin-bottom: 45px; font-size: 1.1rem;
+        }
+
+        .btn-group { display: flex; flex-wrap: wrap; gap: 20px; }
+        .btn-luxury-primary, .btn-luxury-secondary {
+            padding: 20px 40px; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 0.2em; text-decoration: none; font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-luxury-primary {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-muted));
+            color: var(--bg-dark); box-shadow: 0 10px 30px rgba(214, 175, 55, 0.15);
+        }
+        .btn-luxury-primary:hover {
+            transform: translateY(-2px); box-shadow: 0 15px 35px rgba(214, 175, 55, 0.3);
+            background: #FFF; color: var(--bg-dark);
+        }
+        .btn-luxury-secondary {
+            border: 1px solid rgba(255,255,255,0.1); color: var(--text-light);
+            backdrop-filter: blur(5px);
+        }
+        .btn-luxury-secondary:hover {
+            border-color: var(--gold-primary); color: var(--gold-primary);
+        }
+
+        .hero-right {
+            display: none; position: relative; height: 600px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(0,0,0,0));
+            border: 1px solid rgba(255,255,255,0.05); padding: 16px;
+        }
+        @media (min-width: 992px) { .hero-right { display: block; } }
+        .hero-img-box { width: 100%; height: 100%; overflow: hidden; position: relative; }
+        .hero-img-box img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) brightness(75%) contrast(120%);
+            transition: transform 0.8s ease;
+        }
+        .hero-right:hover .hero-img-box img { transform: scale(1.04); }
+
+        /* MANIFESTO LUXE */
+        .manifesto {
+            background: #0A0A0A; padding: 140px 6%; text-align: center;
+            border-y: 1px solid rgba(255, 255, 255, 0.02); position: relative; z-index: 2;
+        }
+        .section-tag {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4em;
+            color: var(--gold-primary); display: block; margin-bottom: 30px; font-weight: 500;
+        }
+        .manifesto h2 {
+            font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 300; font-style: italic; line-height: 1.4;
+            max-width: 1100px; margin: 0 auto; color: rgba(249, 248, 246, 0.9);
+        }
+
+        /* BENTO SERVICES GRID */
+        .services { padding: 140px 6%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+        .services-header {
+            display: flex; flex-direction: column; justify-content: space-between;
+            margin-bottom: 80px; gap: 30px;
+        }
+        @media (min-width: 768px) { .services-header { flex-direction: row; align-items: flex-end; } }
+        .services-header h3 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.6rem); font-weight: 300; }
+        .services-header p { color: rgba(249, 248, 246, 0.4); max-width: 450px; font-size: 1rem; font-weight: 200; line-height: 1.7; }
+
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1200px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .service-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 55px 40px; display: flex; flex-direction: column;
+            justify-content: space-between; min-height: 340px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at top right, rgba(214,175,55,0.04), transparent 60%);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .service-card:hover::before { opacity: 1; }
+        
+        .service-card:hover {
+            transform: translateY(-10px); border-color: rgba(214,175,55,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(214,175,55,0.1);
+        }
+
+        .card-top { display: flex; justify-content: space-between; align-items: center; }
+        .card-top .num { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 300; color: var(--gold-muted); }
+        
+        .exclusive-badge {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em;
+            background: linear-gradient(135deg, #FFF, var(--gold-primary));
+            color: #000; padding: 4px 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(214,175,55,0.2);
+        }
+
+        .card-bottom h4 { font-size: 1.35rem; font-weight: 400; margin-bottom: 15px; letter-spacing: 0.03em; color: rgba(249,248,246,0.95); }
+        .card-bottom p { font-size: 0.9rem; color: rgba(249, 248, 246, 0.55); font-weight: 200; line-height: 1.7; }
+
+        /* ULTRA LUXURY CASE STUDY BLOCK */
+        .case-study-section {
+            background: linear-gradient(to bottom, #0A0A0A, #050505);
+            padding: 140px 6%; border-y: 1px solid rgba(255, 255, 255, 0.02);
+            position: relative; z-index: 2;
+        }
+        .case-container {
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: 1fr; gap: 60px; align-items: center;
+        }
+        @media (min-width: 992px) { .case-container { grid-template-columns: 1fr 1.1fr; gap: 100px; } }
+
+        .case-metrics {
+            background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(214, 175, 55, 0.15);
+            padding: 60px 50px; backdrop-filter: blur(30px); position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .case-metrics::after {
+            content: ''; position: absolute; width: 4px; height: 40px; background: var(--gold-primary);
+            left: -2px; top: 60px;
+        }
+        .metric-box { margin-bottom: 40px; }
+        .metric-box:last-child { margin-bottom: 0; }
+        .metric-label { font-size: 0.65rem; text-transform: uppercase; color: rgba(249,248,246,0.3); letter-spacing: 0.2em; margin-bottom: 8px; }
+        .metric-value { font-family: var(--font-serif); font-size: 3.5rem; font-weight: 300; color: var(--gold-primary); line-height: 1; letter-spacing: -0.02em; }
+        .metric-sub { font-size: 1.05rem; color: var(--text-light); font-weight: 200; margin-top: 8px; opacity: 0.8; }
+
+        .case-text h3 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 300; margin-bottom: 30px; line-height: 1.15; }
+        .case-text p { color: rgba(249, 248, 246, 0.6); font-weight: 200; line-height: 1.8; margin-bottom: 25px; font-size: 1rem; }
+        .case-text ul { list-style: none; margin-top: 30px; }
+        .case-text ul li { position: relative; padding-left: 30px; margin-bottom: 16px; font-size: 0.95rem; color: rgba(249,248,246,0.75); font-weight: 200; }
+        .case-text ul li::before { content: ""; position: absolute; left: 0; top: 12px; width: 12px; height: 1px; background: var(--gold-primary); }
+
+        /* MINIMALIST CUISINES LINES */
+        .concepts { padding: 140px 6%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+        .concepts-header { margin-bottom: 80px; }
+        .concepts-header h3 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.6rem); font-weight: 300; }
+        
+        .concept-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding: 60px 0;
+            transition: all 0.4s ease;
+        }
+        .concept-item:first-child { border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        .concept-item:hover { background: rgba(255,255,255,0.01); padding-left: 20px; padding-right: 20px; }
+        
+        .concept-row { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+        @media (min-width: 992px) { .concept-row { grid-template-columns: 1.1fr 1.4fr 1.5fr; } }
+
+        .concept-meta { display: flex; align-items: center; gap: 20px; color: var(--gold-primary); }
+        .concept-meta .num { font-family: var(--font-serif); font-size: 1.6rem; font-style: italic; font-weight: 300; }
+        .concept-meta .line { width: 50px; height: 1px; background: rgba(214, 175, 55, 0.3); }
+        .concept-meta .cuisine { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500; }
+
+        .concept-title h4 { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 300; letter-spacing: 0.02em; color: var(--text-light); }
+        .concept-title p { font-size: 0.9rem; color: rgba(214,175,55,0.6); font-weight: 300; margin-top: 6px; }
+        
+        .concept-desc { font-size: 0.95rem; color: rgba(249, 248, 246, 0.5); line-height: 1.7; font-weight: 200; }
+        .concept-item:hover .concept-desc { color: rgba(249, 248, 246, 0.85); }
+
+        /* THE PIPELINE */
+        .pipeline { background: #070707; padding: 140px 6%; position: relative; z-index: 2; }
+        .pipeline-container { max-width: 900px; margin: 0 auto; }
+        .pipeline-header { text-align: center; margin-bottom: 90px; }
+        .pipeline-header h3 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.6rem); font-weight: 300; }
+
+        .timeline { position: relative; border-left: 1px solid rgba(214, 175, 55, 0.15); padding: 15px 0; }
+        @media (min-width: 768px) { .timeline { margin-left: 160px; } }
+
+        .timeline-item { position: relative; padding-left: 45px; margin-bottom: 70px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: -4px; top: 8px; width: 7px; height: 7px;
+            background: var(--bg-dark); border: 1px solid var(--gold-primary); border-radius: 50%;
+            transition: all 0.4s;
+        }
+        .timeline-item:hover::before { background: var(--gold-primary); scale: 1.8; box-shadow: 0 0 15px var(--gold-primary); }
+
+        .phase-badge {
+            font-family: var(--font-serif); font-style: italic; color: var(--gold-muted);
+            font-size: 1rem; margin-bottom: 8px; display: block; font-weight: 300;
+        }
+        @media (min-width: 768px) {
+            .phase-badge { position: absolute; left: -185px; top: 4px; width: 140px; text-align: right; }
+        }
+
+        .timeline-item h4 { font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: rgba(249,248,246,0.9); }
+        .timeline-item p { font-size: 0.95rem; color: rgba(249, 248, 246, 0.5); line-height: 1.7; font-weight: 200; }
+
+        /* THE CLOSING EXCLUSIVE CTA */
+        .cta { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 0 6%; overflow: hidden; z-index: 2; }
+        .cta-bg {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to top, var(--bg-dark), rgba(7,7,7,0.4), var(--bg-dark)), 
+                        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; background-position: center; filter: grayscale(100%) brightness(20%) contrast(110%);
+        }
+        .cta-content { position: relative; z-index: 10; text-align: center; max-width: 950px; }
+        .cta-content h2 { font-family: var(--font-serif); font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.08; margin-bottom: 35px; }
+        .cta-content h2 span { font-style: italic; }
+        .cta-content p { color: rgba(249, 248, 246, 0.6); font-weight: 200; max-width: 650px; margin: 0 auto 50px auto; line-height: 1.75; font-size: 1.1rem; }
+
+        .btn-luxury-large {
+            display: inline-flex; align-items: center; gap: 14px; background: #FFF; color: #000;
+            padding: 24px 55px; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.25em;
+            font-weight: 600; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .btn-luxury-large:hover { background: var(--gold-primary); color: #000; transform: translateY(-3px); box-shadow: 0 25px 50px rgba(214,175,55,0.3); }
+
+        /* LUXE FOOTER */
+        footer { border-top: 1px solid rgba(255, 255, 255, 0.02); padding: 100px 6% 50px 6%; font-size: 0.85rem; color: rgba(249, 248, 246, 0.3); position: relative; z-index: 2; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 60px; }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+
+        .footer-logo h4 { font-family: var(--font-serif); color: var(--text-light); letter-spacing: 0.2em; margin-bottom: 20px; font-size: 1.15rem; font-weight: 400; }
+        .footer-logo p { font-size: 0.85rem; max-width: 340px; line-height: 1.7; font-weight: 200; }
+        .footer-col h5 { text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.2em; color: rgba(249, 248, 246, 0.5); margin-bottom: 25px; }
+        .footer-col p { font-size: 0.9rem; color: rgba(249, 248, 246, 0.7); margin-bottom: 10px; font-weight: 200; }
+        .footer-links { display: flex; gap: 25px; }
+        .footer-links a { color: rgba(249, 248, 246, 0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--gold-primary); }
+
+        .footer-bottom {
+            max-width: 1400px; margin: 80px auto 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding-top: 40px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 25px; font-size: 0.75rem;
+        }
+        @media (min-width: 576px) { .footer-bottom { flex-direction: row; } }
+        .footer-bottom .signature { letter-spacing: 0.3em; color: var(--gold-muted); text-transform: uppercase; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow" id="blur-glow"></div>
+
+    <nav id="navbar">
+        <a href="#" class="logo">PROJECT <span>HOSPITALITY</span></a>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#case-study">Case Study</a>
+            <a href="#cuisines">Cuisines</a>
+            <a href="#architecture">Methodology</a>
+        </div>
+        <a href="#contact" class="btn-nav">
+            <span>Request Briefing</span>
+            <i data-lucide="arrow-up-right" style="width: 13px; height: 13px;"></i>
+        </a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-left" data-aos="fade-up" data-aos-duration="1200">
+                <span class="section-tag" style="margin-bottom: 20px;">Venture Strategy & Architecture</span>
+                <h1 class="gold-gradient-text">WE DESIGN <br><span>SYSTEMS</span> THAT <br>GENERATE EMOTION</h1>
+                <p>We combine sensory space styling and culinary architecture with cold, high-yielding unit economic engineering, deep staff monitoring, and anti-leakage systems.</p>
+                <div class="btn-group">
+                    <a href="#services" class="btn-luxury-primary">View Capabilities</a>
+                    <a href="#case-study" class="btn-luxury-secondary">The €100k Shisha Case</a>
+                </div>
+            </div>
+            <div class="hero-right" data-aos="zoom-out" data-aos-duration="1400" data-aos-delay="200">
+                <div class="hero-img-box">
+                    <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80" alt="Bespoke Restaurant Lounge Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="manifesto">
+        <span class="section-tag" data-aos="fade-up">The Operational Axis</span>
+        <h2 data-aos="fade-up" data-aos-duration="1000">
+            "Aesthetic concept architecture only matters when the back-end performs. High-end design must breathe alongside flawless ingredient costing, zero-waste logistics, and rigid team KPIs."
+        </h2>
+    </section>
+
+    <section id="services" class="services">
+        <div class="services-container">
+            <div class="services-header">
+                <div>
+                    <span class="section-tag">Ecosystem Controls</span>
+                    <h3>Turnkey System Architecture</h3>
+                </div>
+                <p>We replace random restaurant consulting with deep operational configuration. We engineer, deploy, and audit your business engine.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="card-top"><span class="num">01</span></div>
+                    <div class="card-bottom">
+                        <h4>Spatial Curation & Styling</h4>
+                        <p>Comprehensive creative blueprints, moodboards, custom brand elements, and line-of-sight kitchen architectures optimized for speed.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-top"><span class="num">02</span></div>
+                    <div class="card-bottom">
+                        <h4>Bespoke Launches</h4>
+                        <p>Navigating the critical roadmap timeline from elite architectural oversight to government approvals and soft-launch testing.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-top"><span class="num">03</span></div>
+                    <div class="card-bottom">
+                        <h4>Yield & Cost Engineering</h4>
+                        <p>Granular menu recipe breakdown, exact sub-ingredient cost models, and strict waste mitigation systems to lock net margin growth.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-top"><span class="num">04</span></div>
+                    <div class="card-bottom">
+                        <h4>Staff KPI & Fraud Prevention</h4>
+                        <p>Structuring exact floor workflows, gamified sales scripts, speed benchmarks, and bulletproof internal tracking variables.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400" style="border: 1px solid rgba(214, 175, 55, 0.3); background: rgba(214, 175, 55, 0.03);">
+                    <div class="card-top">
+                        <span class="num" style="color: var(--gold-primary);">05</span>
+                        <span class="exclusive-badge">On-Site Assault</span>
+                    </div>
+                    <div class="card-bottom">
+                        <h4>Embedded Auditing (1 Week/Mo)</h4>
+                        <p>We do not analyze data from spreadsheets alone. Our senior auditor physically lives inside your venue 1 full week every month — analyzing actual staff speed, kitchen theft parameters, and live customer behavior.</p>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card-top"><span class="num">06</span></div>
+                    <div class="card-bottom">
+                        <h4>High-Yield Seasonal Rotations</h4>
+                        <p>Designing fast-evolving, highly profitable seasonal additions mapped against supply line networks and premium guest re-engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="case-study" class="case-study-section">
+        <div class="case-container">
+            <div class="case-metrics" data-aos="fade-right">
+                <div class="metric-box">
+                    <div class="metric-label">Verified Operational Net Profit</div>
+                    <div class="metric-value">€60K – €100K</div>
+                    <div class="metric-sub">Captured within 60 calendar days post-stabilization</div>
+                </div>
+                <div class="metric-box" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+                    <div class="metric-label">Sector Integration</div>
+                    <div class="metric-sub" style="font-size: 1.3rem; color: var(--gold-primary); font-weight: 300; font-family: var(--font-serif); font-style: italic;">Premium Shisha Lounge & High-Margin Beverage Matrix</div>
+                </div>
+            </div>
+            
+            <div class="case-text" data-aos="fade-left">
+                <span class="section-tag">Hard Numerical Output</span>
+                <h3>Case Study: Re-Structuring High-Margin Shisha Ecosystems</h3>
+                <p>By breaking luxury shisha lounges down into standalone high-margin profit nodes, we successfully executed a holistic cost-engineering and tracking transformation.</p>
+                <p>We completely eliminated flavor mass loss, deployed precision preparation workflows, and shifted staff behaviors via dedicated high-ticket pairing incentives.</p>
+                <ul>
+                    <li>100% initial capital deployment recovery in under 2 months.</li>
+                    <li>SOP integrations tracking up to 22% previously undocumented product leakage.</li>
+                    <li>Dynamic menu layouts built to force upscale customer choices.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="cuisines" class="concepts">
+        <div class="concepts-header">
+            <span class="section-tag">Global Standards</span>
+            <h3>Specialized Cuisine Architecture</h3>
+        </div>
+
+        <div class="concepts-list">
+            <div class="concept-item" data-aos="fade-up">
+                <div class="concept-row">
+                    <div class="concept-meta">
+                        <span class="num">01</span>
+                        <div class="line"></div>
+                        <span class="cuisine">Italian & Mediterranean</span>
+                    </div>
+                    <div class="concept-title">
+                        <h4>Osteria Infrastructures</h4>
+                        <p>Flour Hydration Metrics & Premium Import Controls</p>
+                    </div>
+                    <div class="concept-desc">
+                        Engineering classical Italian configurations with modern scratch-pasta workflows, highly strict cold pressing logs, and rapid stone firing processes.
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-item" data-aos="fade-up">
+                <div class="concept-row">
+                    <div class="concept-meta">
+                        <span class="num">02</span>
+                        <div class="line"></div>
+                        <span class="cuisine">Japanese & East Asian</span>
+                    </div>
+                    <div class="concept-title">
+                        <h4>Izakaya & Cold Chain Controls</h4>
+                        <p>Portion Mass Locking & Zero-Waste Raw Bar Tech</p>
+                    </div>
+                    <div class="concept-desc">
+                        Deploying strict product temperature paths, stabilizing high-volume fresh seafood metrics, and constructing sushi line systems that cap kitchen loss under 1.5%.
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-item" data-aos="fade-up">
+                <div class="concept-row">
+                    <div class="concept-meta">
+                        <span class="num">03</span>
+                        <div class="line"></div>
+                        <span class="cuisine">Modern Ukrainian Heritage</span>
+                    </div>
+                    <div class="concept-title">
+                        <h4>Elevated Ethnic Gastronomy</h4>
+                        <p>Comfort Texture Optimization via Commercial SOPs</p>
+                    </div>
+                    <div class="concept-desc">
+                        Translating complex historical recipes and heavy local culinary textures into fast, scalable commercial tech-cards without stripping authenticity.
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-item" data-aos="fade-up">
+                <div class="concept-row">
+                    <div class="concept-meta">
+                        <span class="num">04</span>
+                        <div class="line"></div>
+                        <span class="cuisine">French & Turkish Profiles</span>
+                    </div>
+                    <div class="concept-title">
+                        <h4>Haute Gastronomy & Charcoal Craft</h4>
+                        <p>Elite Saucier Systems & Embers Thermal Blueprints</p>
+                    </div>
+                    <div class="concept-desc">
+                        Blending meticulous technical French saucier disciplines with intense Turkish open-hearth charcoal workflows into step-by-step staff training frameworks.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="pipeline">
+        <div class="pipeline-container">
+            <div class="pipeline-header">
+                <span class="section-tag">The Architecture Roadmap</span>
+                <h3>The Synchronization Strategy</h3>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <span class="phase-badge">Phase 01</span>
+                    <h4>Asset Modeling & Spatial Feasibility</h4>
+                    <p>Rigid location traffic mapping, regional spending capacity calculations, initial design styling guidelines, and fully insulated cashflow projections.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <span class="phase-badge">Phase 02</span>
+                    <h4>Ergonomic Overlay & Kitchen Styling</h4>
+                    <p>Direct partnership with high-tier architects to enforce kitchen line ergonomics, bar mechanics, acoustic comfort paths, and raw material curation.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <span class="phase-badge">Phase 03</span>
+                    <h4>Recipe Engineering & Gross Margin Calculations</h4>
+                    <p>Finalizing core menus across target global cuisines. Testing sub-recipe weight parameters, locking supply contracts, and protecting net revenue targets.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <span class="phase-badge">Phase 04</span>
+                    <h4>KPI Enforcement & Pre-Launch Operations</h4>
+                    <p>Injecting custom staff performance metrics, putting the kitchen through heavy peak-hour stress simulations, and initializing internal tracking models.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <span class="phase-badge">Phase 05</span>
+                    <h4>Embedded Auditing & Continuous Yield Upgrades</h4>
+                    <p>Transitioning to active operation. Our senior operational expert is embedded directly inside your floor 1 full week every month to dynamically secure net margins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta">
+        <div class="cta-bg"></div>
+        <div class="cta-content" data-aos="zoom-out" data-aos-duration="1000">
+            <h2 class="gold-gradient-text">LET’S CONFIGURE AN UNFAIR <br><span>OPERATIONAL MONOPOLY.</span></h2>
+            <p>From day zero of visual style definition to continuous, inside-the-venue financial auditing — we configure hospitality investments into absolute high-yielding benchmarks.</p>
+            <a href="mailto:hello@projecthospitality.com" class="btn-luxury-large">
+                <span>Request Executive Briefing</span>
+                <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h4>PROJECT HOSPITALITY</h4>
+                <p>Turnkey hospitality system engineering, high-ticket lounge architecture, and deep operational embedded auditing for global investors.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Executive Communications</h5>
+                <p>hello@projecthospitality.com</p>
+                <p>+380 (93) 123 45 67</p>
+            </div>
+            <div class="footer-col">
+                <h5>Digital Footprint</h5>
+                <div class="footer-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> Project Hospitality Studio Global. All rights reserved.</p>
+            <p class="signature">Art & Operational Systems Architecture</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Smooth Scroll Animations
+        AOS.init({
+            duration: 900,
+            once: true,
+            offset: 140
+        });
+
+        // Generate Premium Vector Icons
+        lucide.createIcons();
+
+        // Footer Dynamic Data Fix
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // MOUSE AMBIENT GLOW TRACKING SYSTEM
+        const glow = document.getElementById('blur-glow');
+        window.addEventListener('mousemove', (e) => {
+            // Smoothly shift background radial light towards mouse position
+            const x = e.clientX - 300;
+            const y = e.clientY - 300;
+            glow.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // NAVBAR SCROLL TRANSITION EFFECT
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.style.padding = '18px 6%';
+                navbar.style.background = 'rgba(7, 7, 7, 0.93)';
+            } else {
+                navbar.style.padding = '25px 6%';
+                navbar.style.background = 'rgba(7, 7, 7, 0.75)';
+            }
+        });
+
+        // HIGH LUXURY LEAF & TOBACCO PARTICLE SIMULATOR
+        const heroSection = document.querySelector('.hero');
+        const leafElements = ['🌿', '🍃', '🍂'];
+
+        function runParticleSimulation() {
+            const particle = document.createElement('div');
+            particle.classList.add('leaf-particle');
+            particle.textContent = leafElements[Math.floor(Math.random() * leafElements.length)];
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.fontSize = Math.random() * (22 - 12) + 12 + 'px';
+            particle.style.filter = `blur(${Math.random() * 1}px)`;
+            
+            const lifeDuration = Math.random() * (14 - 8) + 8;
+            const delayOffset = Math.random() * 1.5;
+            
+            heroSection.appendChild(particle);
+
+            particle.animate([
+                { transform: 'translateY(-50px) rotate(0deg) translateX(0px)', opacity: 0 },
+                { opacity: 0.4, offset: 0.2 },
+                { opacity: 0.4, offset: 0.8 },
+                { transform: `translateY(105vh) rotate(${Math.random() * 360 + 180}deg) translateX(${Math.random() * 60 - 30}px)`, opacity: 0 }
+            ], {
+                duration: lifeDuration * 1000,
+                delay: delayOffset * 1000,
+                easing: 'linear',
+                iterations: Infinity
+            });
+
+            setTimeout(() => { particle.remove(); }, (lifeDuration + delayOffset) * 1000);
+        }
+
+        // Initialize Simulation Pool
+        for (let i = 0; i < 6; i++) {
+            setTimeout(runParticleSimulation, i * 1600);
+        }
+    </script>
+</body>
+</html>
