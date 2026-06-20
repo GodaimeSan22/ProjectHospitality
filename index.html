@@ -9,35 +9,32 @@
         :root { --cream: #F4EFEA; --black: #1A1A1A; --gold: #B8860B; }
         
         body { margin: 0; background-color: var(--cream); color: var(--black); font-family: 'Montserrat', sans-serif; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header { height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; }
-        .tagline { letter-spacing: 0.2rem; text-transform: uppercase; font-size: 0.6rem; color: #888; }
+        .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; }
 
         /* Team */
-        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 30px 0; }
-        .member { text-align: center; }
-        .circle { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 10px; border: 2px solid var(--gold); overflow: hidden; background: #ddd; }
+        .bio-item { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+        .circle { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0; background: #ddd; }
         .circle img { width: 100%; height: 100%; object-fit: cover; }
-        .name { font-weight: 600; font-size: 0.85rem; }
-        .role { font-size: 0.7rem; color: #666; }
+        .name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+        .exp { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
+        .desc { font-size: 0.85rem; line-height: 1.5; color: #444; }
 
         /* Stats */
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 40px 0; }
-        .stat-card { border: 1px solid #ddd; padding: 15px; text-align: center; }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); display: block; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 50px 0; }
+        .stat-card { border: 1px solid #ddd; padding: 20px; text-align: center; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); display: block; }
         .stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Projects */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .card-img { width: 100%; height: 200px; background: #ddd; border-radius: 5px; overflow: hidden; }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .project-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; }
+        .icon { width: 45px; height: 45px; border-radius: 4px; object-fit: cover; }
 
         @media (min-width: 768px) {
-            .team-grid { grid-template-columns: repeat(4, 1fr); }
             .stats { grid-template-columns: repeat(4, 1fr); }
-            .grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -50,17 +47,43 @@
 
 <div class="container">
     <section>
-        <h2 style="text-align: center;">Our Team</h2>
-        <div class="team-grid">
-            <div class="member"><div class="circle"><img src="Natalia.png"></div><div class="name">Natalia</div><div class="role">Manager</div></div>
-            <div class="member"><div class="circle"><img src="Vasya.png"></div><div class="name">Vasyl</div><div class="role">Operations</div></div>
-            <div class="member"><div class="circle"><img src="Valentyn.png"></div><div class="name">Valentyn</div><div class="role">IT & Data</div></div>
-            <div class="member"><div class="circle"><img src="Antonina.png"></div><div class="name">Antonina</div><div class="role">Marketing</div></div>
+        <h2>Our Team</h2>
+        <div class="bio-item">
+            <div class="circle"><img src="Natalia.png"></div>
+            <div class="bio-text">
+                <div class="name">Natalia</div>
+                <div class="exp">10 years exp • Hospitality Manager</div>
+                <div class="desc">Expert in service standards and large-scale team leadership. Specialized in transforming operational challenges into high-profit workflows.</div>
+            </div>
+        </div>
+        <div class="bio-item">
+            <div class="circle"><img src="Vasya.png"></div>
+            <div class="bio-text">
+                <div class="name">Vasyl</div>
+                <div class="exp">8 years exp • Operations</div>
+                <div class="desc">From waiter to operations expert. Focuses on internal processes, cost control, and seamless daily management of F&B venues.</div>
+            </div>
+        </div>
+        <div class="bio-item">
+            <div class="circle"><img src="Valentyn.png"></div>
+            <div class="bio-text">
+                <div class="name">Valentyn</div>
+                <div class="exp">6+ years exp • IT & Data</div>
+                <div class="desc">Architect of restaurant automation. Expert in POS integration, real-time analytics, and data-driven profit maximization.</div>
+            </div>
+        </div>
+        <div class="bio-item">
+            <div class="circle"><img src="Antonina.png"></div>
+            <div class="bio-text">
+                <div class="name">Antonina</div>
+                <div class="exp">Marketing & SMM • 30+ Projects</div>
+                <div class="desc">A visionary behind 30+ turnkey launches. Expert in brand aesthetics, integrated marketing campaigns, and visual strategy.</div>
+            </div>
         </div>
     </section>
 
     <section>
-        <h2 style="text-align: center;">Our Achievements</h2>
+        <h2>Our Achievements</h2>
         <div class="stats">
             <div class="stat-card"><span class="stat-num">30+</span><span class="stat-label">Projects</span></div>
             <div class="stat-card"><span class="stat-num">10+</span><span class="stat-label">Years Exp.</span></div>
@@ -70,14 +93,12 @@
     </section>
 
     <section>
-        <h2 style="text-align: center;">Selected Projects</h2>
-        <div class="grid">
-            <div class="card"><div class="card-img"><img src="legend.png"></div><div class="name">Legend Club</div><p class="role">Valencia • Nightlife</p></div>
-            <div class="card"><div class="card-img"><img src="selection.png"></div><div class="name">Legend Selection</div><p class="role">Valencia • Venue</p></div>
-            <div class="card"><div class="card-img"><img src="apartel.png"></div><div class="name">Apartel Resorts</div><p class="role">Hotel & F&B</p></div>
-            <div class="card"><div class="card-img"><img src="verkhovyna.png"></div><div class="name">Verkhovyna Resort</div><p class="role">Wellness</p></div>
-            <div class="card"><div class="card-img"><img src="limoncello.png"></div><div class="name">Limoncello</div><p class="role">Restaurant Concept</p></div>
-        </div>
+        <h2>Selected Projects</h2>
+        <div class="project-item"><img src="legend.png" class="icon"><div class="project-info"><b>Legend Club</b><br>Full Concept & Management</div></div>
+        <div class="project-item"><img src="selection.png" class="icon"><div class="project-info"><b>Legend Selection</b><br>Operational Strategy</div></div>
+        <div class="project-item"><img src="apartel.png" class="icon"><div class="project-info"><b>Apartel Resorts</b><br>Hospitality & F&B Consulting</div></div>
+        <div class="project-item"><img src="verkhovyna.png" class="icon"><div class="project-info"><b>Verkhovyna Resort</b><br>Wellness Management</div></div>
+        <div class="project-item"><img src="limoncello.png" class="icon"><div class="project-info"><b>Limoncello</b><br>Launch & IT-Solutions</div></div>
     </section>
 </div>
 
