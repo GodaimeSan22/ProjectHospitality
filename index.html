@@ -11,45 +11,52 @@
         body { margin: 0; background-color: var(--cream); color: var(--black); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        /* --- СТАБІЛЬНА СІТКА ДЛЯ ЇЖІ --- */
-        .header-wrapper { padding: 40px 20px; text-align: center; }
-        .food-ring { 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 15px;
-            max-width: 250px; 
-            margin: 0 auto 30px auto;
-            justify-items: center;
-        }
-        .food-item { 
-            width: 100px; height: 100px; border-radius: 50%;
-            border: 3px solid var(--gold);
-            object-fit: cover; /* Завжди ідеальне коло */
-            animation: float 4s ease-in-out infinite;
-        }
+        /* --- HEADER & FOOD --- */
+        .header-wrapper { padding: 40px 10px; text-align: center; }
+        .food-ring { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 220px; margin: 0 auto 30px auto; justify-items: center; }
+        .food-item { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; animation: float 4s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
+        
         h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0; }
-        .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; }
+        .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; margin-bottom: 5px; }
 
-        /* --- КОНТЕНТ --- */
-        section { background: rgba(255,255,255,0.4); padding: 30px; border-radius: 15px; margin-bottom: 30px; }
-        .bio-item { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
-        .circle { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0; }
+        /* --- SECTIONS --- */
+        section { background: rgba(255,255,255,0.4); padding: 25px; border-radius: 15px; margin-bottom: 20px; text-align: center; }
+        
+        /* ЗАГОЛОВКИ ЗАВЖДИ ПО ЦЕНТРУ */
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.6rem; 
+            border-bottom: 2px solid var(--gold); 
+            display: inline-block; 
+            margin: 0 0 20px 0; 
+            padding-bottom: 5px; 
+            width: 100%; /* Забезпечує коректне відображення в блоці */
+        }
+        
+        /* Team */
+        .bio-item { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 20px; text-align: center; }
+        .circle { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); }
         .circle img { width: 100%; height: 100%; object-fit: cover; }
-        .name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
-        .exp { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
-        .desc { font-size: 0.85rem; line-height: 1.5; color: #444; }
+        .name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; display: block; }
+        .exp { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
+        .desc { font-size: 0.85rem; line-height: 1.5; color: #444; max-width: 500px; margin: 0 auto; }
 
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
-        .stat-card { border: 1px solid #ddd; padding: 20px; text-align: center; }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); display: block; }
-        .stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; }
+        /* Stats */
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .stat-card { border: 1px solid #ddd; padding: 15px; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); display: block; }
+        .stat-label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .project-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: transform 0.2s; }
-        .icon { width: 45px; height: 45px; border-radius: 4px; object-fit: cover; }
+        /* Projects */
+        .project-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; text-align: left; }
+        .icon { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; }
+
+        /* Contacts */
+        .contacts { font-weight: 600; padding: 20px; text-align: center; }
 
         @media (min-width: 768px) {
+            .bio-item { flex-direction: row; text-align: left; align-items: flex-start; }
             .food-ring { max-width: 500px; grid-template-columns: repeat(4, 1fr); }
             .food-item { width: 120px; height: 120px; }
             .stats { grid-template-columns: repeat(4, 1fr); }
@@ -70,12 +77,13 @@
 </header>
 
 <div class="container">
+    
     <section>
         <h2>Our Team</h2>
         <div class="bio-item">
             <div class="circle"><img src="Natalia.png"></div>
             <div>
-                <div class="name">Natalia</div>
+                <span class="name">Natalia</span>
                 <div class="exp">10 years exp • Hospitality Manager</div>
                 <div class="desc">Expert in service standards and large-scale team leadership. Specialized in transforming operational challenges into high-profit workflows.</div>
             </div>
@@ -83,7 +91,7 @@
         <div class="bio-item">
             <div class="circle"><img src="Vasya.png"></div>
             <div>
-                <div class="name">Vasyl</div>
+                <span class="name">Vasyl</span>
                 <div class="exp">8 years exp • Operations</div>
                 <div class="desc">From waiter to operations expert. Focuses on internal processes, cost control, and seamless daily management of F&B venues.</div>
             </div>
@@ -91,7 +99,7 @@
         <div class="bio-item">
             <div class="circle"><img src="Valentyn.png"></div>
             <div>
-                <div class="name">Valentyn</div>
+                <span class="name">Valentyn</span>
                 <div class="exp">6+ years exp • IT & Data</div>
                 <div class="desc">Architect of restaurant automation. Expert in POS integration, real-time analytics, and data-driven profit maximization.</div>
             </div>
@@ -99,7 +107,7 @@
         <div class="bio-item">
             <div class="circle"><img src="Antonina.png"></div>
             <div>
-                <div class="name">Antonina</div>
+                <span class="name">Antonina</span>
                 <div class="exp">Marketing & SMM • 30+ Projects</div>
                 <div class="desc">A visionary behind 30+ turnkey launches. Expert in brand aesthetics, integrated marketing campaigns, and visual strategy.</div>
             </div>
@@ -107,7 +115,7 @@
     </section>
 
     <section>
-        <h2>Our Achievements</h2>
+        <h2>Achievements</h2>
         <div class="stats">
             <div class="stat-card"><span class="stat-num">30+</span><span class="stat-label">Projects</span></div>
             <div class="stat-card"><span class="stat-num">10+</span><span class="stat-label">Years Exp.</span></div>
@@ -118,6 +126,15 @@
 
     <section>
         <h2>Selected Projects</h2>
+        <a href="https://www.instagram.com/svoi.resto" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="SvoiResto.png" class="icon"><div><b>SVOI resto</b><br>Atmospheric Resto-Bar</div></div>
+        </a>
+        <a href="https://www.instagram.com/sake.lounge.uzh" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="Sake.jpg" class="icon"><div><b>Sake Lounge Uzhhorod</b><br>Asian Cuisine Restaurant</div></div>
+        </a>
+        <a href="https://www.instagram.com/polumia.restaurant.bukovel" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="Polumya.jpg" class="icon"><div><b>Polumya (Bukovel)</b><br>Modern Ukrainian Gastronomy</div></div>
+        </a>
         <a href="https://www.instagram.com/legendclub_valencia/" style="text-decoration: none; color: inherit;">
             <div class="project-item"><img src="LegendClub.png" class="icon"><div><b>Legend Club</b><br>Stock Management IT Solution</div></div>
         </a>
@@ -134,7 +151,13 @@
             <div class="project-item"><img src="limoncello.png" class="icon"><div><b>Limoncello</b><br>Launch & IT-Solutions</div></div>
         </a>
     </section>
-</div>
 
+    <section class="contacts">
+        <h2>Contacts</h2>
+        <p>Ready for collaboration?</p>
+        <p>Email: <a href="mailto:info@svoi.group">info@svoi.group</a></p>
+    </section>
+
+</div>
 </body>
 </html>
