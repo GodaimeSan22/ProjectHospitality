@@ -11,11 +11,21 @@
         body { margin: 0; background-color: var(--cream); color: var(--black); font-family: 'Montserrat', sans-serif; }
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        header { height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; }
+        /* --- СТИЛЬ КРУЖЕЧКІВ БІЛЯ ЛОГО --- */
+        .header-wrapper { padding: 60px 20px; text-align: center; position: relative; }
+        
+        .food-ring { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .food-item { 
+            width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold);
+            object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0; }
         .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; }
 
-        /* Team */
+        /* --- КОНТЕНТ (Ваш попередній варіант) --- */
         .bio-item { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
         .circle { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0; background: #ddd; }
         .circle img { width: 100%; height: 100%; object-fit: cover; }
@@ -23,25 +33,30 @@
         .exp { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
         .desc { font-size: 0.85rem; line-height: 1.5; color: #444; }
 
-        /* Stats */
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 50px 0; }
         .stat-card { border: 1px solid #ddd; padding: 20px; text-align: center; }
         .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); display: block; }
         .stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Projects */
         .project-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: transform 0.2s; }
         .project-item:hover { transform: scale(1.02); }
         .icon { width: 45px; height: 45px; border-radius: 4px; object-fit: cover; }
 
         @media (min-width: 768px) {
             .stats { grid-template-columns: repeat(4, 1fr); }
+            .food-item { width: 120px; height: 120px; }
         }
     </style>
 </head>
 <body>
 
-<header class="container">
+<header class="header-wrapper">
+    <div class="food-ring">
+        <img src="limoncelloIida.png" class="food-item" style="animation-delay: 0s;">
+        <img src="Limones.png" class="food-item" style="animation-delay: 1s;">
+        <img src="Pasta.png" class="food-item" style="animation-delay: 2s;">
+        <img src="Tartar.png" class="food-item" style="animation-delay: 3s;">
+    </div>
     <div class="tagline">Hospitality Development Studio</div>
     <h1>SVOI GROUP</h1>
 </header>
@@ -95,23 +110,18 @@
 
     <section>
         <h2>Selected Projects</h2>
-        
         <a href="https://www.instagram.com/legendclub_valencia/" style="text-decoration: none; color: inherit;">
-            <div class="project-item"><img src="LegendClub.png" class="icon"><div class="project-info"><b>Legend Club</b><br>Full Concept & Management</div></div>
+            <div class="project-item"><img src="LegendClub.png" class="icon"><div class="project-info"><b>Legend Club</b><br>Stock Management IT Solution</div></div>
         </a>
-
         <a href="https://www.instagram.com/legendselection_valencia/" style="text-decoration: none; color: inherit;">
             <div class="project-item"><img src="Selection.png" class="icon"><div class="project-info"><b>Legend Selection</b><br>Operational Strategy</div></div>
         </a>
-
         <a href="https://www.instagram.com/apartel_resorts/" style="text-decoration: none; color: inherit;">
             <div class="project-item"><img src="Apartel.png" class="icon"><div class="project-info"><b>Apartel Resorts</b><br>Hospitality & F&B Consulting</div></div>
         </a>
-
         <a href="https://www.instagram.com/verkhovynaresort/" style="text-decoration: none; color: inherit;">
             <div class="project-item"><img src="Verkovyna.png" class="icon"><div class="project-info"><b>Verkhovyna Resort</b><br>Wellness Management</div></div>
         </a>
-
         <a href="https://www.instagram.com/limoncello.uzh/" style="text-decoration: none; color: inherit;">
             <div class="project-item"><img src="limoncello.png" class="icon"><div class="project-info"><b>Limoncello</b><br>Launch & IT-Solutions</div></div>
         </a>
