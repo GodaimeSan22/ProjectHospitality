@@ -5,63 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVOI GROUP | Hospitality Excellence</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;600&display=swap');
-        :root { --cream: #F4EFEA; --black: #1A1A1A; --gold: #B8860B; }
-        
-        body { margin: 0; background-color: var(--cream); color: var(--black); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@200;400;500;600&display=swap');
 
-        /* --- HEADER & FOOD --- */
-        .header-wrapper { padding: 40px 10px; text-align: center; }
-        .food-ring { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 220px; margin: 0 auto 30px auto; justify-items: center; }
-        .food-item { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        
-        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0; }
-        .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; margin-bottom: 5px; }
+:root{
+    --cream: #F4EFEA;
+    --black: #1A1A1A;
+    --gold: #B8860B;
+    --gray: #777;
+    --border: rgba(0,0,0,0.08);
+    --soft: rgba(255,255,255,0.45);
+}
 
-        /* --- SECTIONS --- */
-        section { background: rgba(255,255,255,0.4); padding: 25px; border-radius: 15px; margin-bottom: 20px; text-align: center; }
-        
-        /* ЗАГОЛОВКИ ЗАВЖДИ ПО ЦЕНТРУ */
-        h2 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.6rem; 
-            border-bottom: 2px solid var(--gold); 
-            display: inline-block; 
-            margin: 0 0 20px 0; 
-            padding-bottom: 5px; 
-            width: 100%; /* Забезпечує коректне відображення в блоці */
-        }
-        
-        /* Team */
-        .bio-item { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 20px; text-align: center; }
-        .circle { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); }
-        .circle img { width: 100%; height: 100%; object-fit: cover; }
-        .name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; display: block; }
-        .exp { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
-        .desc { font-size: 0.85rem; line-height: 1.5; color: #444; max-width: 500px; margin: 0 auto; }
+*{
+    box-sizing: border-box;
+}
 
-        /* Stats */
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .stat-card { border: 1px solid #ddd; padding: 15px; }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); display: block; }
-        .stat-label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
 
-        /* Projects */
-        .project-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; text-align: left; }
-        .icon { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; }
+/* CONTAINER */
+.container{
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-        /* Contacts */
-        .contacts { font-weight: 600; padding: 20px; text-align: center; }
+/* HEADER */
+.header-wrapper{
+    padding: 50px 10px;
+    text-align: center;
+}
 
-        @media (min-width: 768px) {
-            .bio-item { flex-direction: row; text-align: left; align-items: flex-start; }
-            .food-ring { max-width: 500px; grid-template-columns: repeat(4, 1fr); }
-            .food-item { width: 120px; height: 120px; }
-            .stats { grid-template-columns: repeat(4, 1fr); }
-        }
-    </style>
+.tagline{
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--gray);
+}
+
+h1{
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 4.8rem);
+    margin: 0;
+}
+
+/* FOOD */
+.food-ring{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 240px;
+    margin: 0 auto 30px;
+}
+
+.food-item{
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    object-fit: cover;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform: translateY(0);}
+    50%{transform: translateY(-10px);}
+}
+
+/* SECTIONS */
+section{
+    background: var(--soft);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    display: inline-block;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 6px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+/* TEAM */
+.bio-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.circle{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+}
+
+.circle img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.exp{
+    font-size: 0.7rem;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.desc{
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* STATS */
+.stats{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat-card{
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.4);
+}
+
+.stat-num{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    display: block;
+}
+
+.stat-label{
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+/* PROJECTS */
+.project-item{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: rgba(233,229,224,0.7);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.icon{
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* CONTACTS */
+.contact-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.contact-text{
+    font-size: 0.9rem;
+    color: #444;
+    max-width: 520px;
+}
+
+.contact-line{
+    width: 70px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.contact-link{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.contact-meta{
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+/* DESKTOP */
+@media (min-width: 768px){
+    .food-ring{
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 520px;
+    }
+
+    .food-item{
+        width: 120px;
+        height: 120px;
+    }
+
+    .bio-item{
+        flex-direction: row;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .stats{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
 </head>
 <body>
 
