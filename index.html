@@ -30,7 +30,8 @@
         .stat-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Projects */
-        .project-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; }
+        .project-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: transform 0.2s; }
+        .project-item:hover { transform: scale(1.02); }
         .icon { width: 45px; height: 45px; border-radius: 4px; object-fit: cover; }
 
         @media (min-width: 768px) {
@@ -94,11 +95,26 @@
 
     <section>
         <h2>Selected Projects</h2>
-        <div class="project-item"><img src="legend.png" class="icon"><div class="project-info"><b>Legend Club</b><br>Full Concept & Management</div></div>
-        <div class="project-item"><img src="selection.png" class="icon"><div class="project-info"><b>Legend Selection</b><br>Operational Strategy</div></div>
-        <div class="project-item"><img src="apartel.png" class="icon"><div class="project-info"><b>Apartel Resorts</b><br>Hospitality & F&B Consulting</div></div>
-        <div class="project-item"><img src="verkhovyna.png" class="icon"><div class="project-info"><b>Verkhovyna Resort</b><br>Wellness Management</div></div>
-        <div class="project-item"><img src="limoncello.png" class="icon"><div class="project-info"><b>Limoncello</b><br>Launch & IT-Solutions</div></div>
+        
+        <a href="https://www.instagram.com/legendclub_valencia/" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="legend.png" class="icon"><div class="project-info"><b>Legend Club</b><br>Full Concept & Management</div></div>
+        </a>
+
+        <a href="https://www.instagram.com/legendselection_valencia/" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="selection.png" class="icon"><div class="project-info"><b>Legend Selection</b><br>Operational Strategy</div></div>
+        </a>
+
+        <a href="https://www.instagram.com/apartel_resorts/" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="apartel.png" class="icon"><div class="project-info"><b>Apartel Resorts</b><br>Hospitality & F&B Consulting</div></div>
+        </a>
+
+        <a href="https://www.instagram.com/verkhovynaresort/" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="verkhovyna.png" class="icon"><div class="project-info"><b>Verkhovyna Resort</b><br>Wellness Management</div></div>
+        </a>
+
+        <a href="https://www.instagram.com/limoncello.uzh/" style="text-decoration: none; color: inherit;">
+            <div class="project-item"><img src="limoncello.png" class="icon"><div class="project-info"><b>Limoncello</b><br>Launch & IT-Solutions</div></div>
+        </a>
     </section>
 </div>
 
