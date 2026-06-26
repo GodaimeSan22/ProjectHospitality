@@ -6,73 +6,172 @@
     <title>SVOI GROUP | Hospitality Excellence</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;600&display=swap');
-        :root { --cream: #F4EFEA; --black: #1A1A1A; --gold: #B8860B; }
-        
-        body { margin: 0; background-color: var(--cream); color: var(--black); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        /* --- HEADER & FOOD --- */
-        .header-wrapper { padding: 40px 10px; text-align: center; }
-        .food-ring { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 220px; margin: 0 auto 30px auto; justify-items: center; }
-        .food-item { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; animation: float 4s ease-in-out infinite; }
+        :root { --cream: #F4EFEA; --black: #1A1A1A; --gold: #B8860B; --muted:#796f65; --paper: rgba(255,255,255,.58); --line: rgba(26,26,26,.10); }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(184,134,11,.16), transparent 28%),
+                radial-gradient(circle at 90% 5%, rgba(255,255,255,.62), transparent 24%),
+                linear-gradient(135deg, #f8f3ed 0%, var(--cream) 48%, #e8ded2 100%);
+            color: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(26,26,26,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,26,.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 72%);
+        }
+        .container { max-width: 980px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        .header-wrapper { padding: 54px 10px 34px; text-align: center; position: relative; z-index: 1; }
+        .food-ring { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 230px; margin: 0 auto 32px auto; justify-items: center; }
+        .food-item { width: 92px; height: 92px; border-radius: 50%; border: 3px solid rgba(184,134,11,.88); object-fit: cover; animation: float 4s ease-in-out infinite; box-shadow: 0 18px 40px rgba(26,26,26,.14); }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        
-        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin: 0; }
-        .tagline { letter-spacing: 0.3rem; text-transform: uppercase; font-size: 0.7rem; color: #888; margin-bottom: 5px; }
-
-        /* --- SECTIONS --- */
-        section { background: rgba(255,255,255,0.4); padding: 25px; border-radius: 15px; margin-bottom: 20px; text-align: center; }
-        
-        /* ЗАГОЛОВКИ ЗАВЖДИ ПО ЦЕНТРУ */
-        h2 { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.6rem; 
-            border-bottom: 2px solid var(--gold); 
-            display: inline-block; 
-            margin: 0 0 20px 0; 
-            padding-bottom: 5px; 
-            width: 100%; /* Забезпечує коректне відображення в блоці */
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 9vw, 5.6rem); margin: 0; letter-spacing: -1px; }
+        .tagline { letter-spacing: 0.34rem; text-transform: uppercase; font-size: 0.68rem; color: var(--muted); margin-bottom: 8px; }
+        section {
+            background: var(--paper);
+            padding: clamp(24px, 4vw, 38px);
+            border-radius: 28px;
+            margin-bottom: 22px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,.72);
+            box-shadow: 0 24px 70px rgba(62,45,26,.10), inset 0 1px 0 rgba(255,255,255,.7);
+            backdrop-filter: blur(12px);
         }
-        
-        /* Team */
-        .bio-item { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 20px; text-align: center; }
-        .circle { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); }
+        h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.65rem, 4vw, 2.1rem); display: inline-flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 24px 0; padding-bottom: 0; width: 100%; border-bottom: 0; }
+        h2::before, h2::after { content: ''; width: min(80px, 18vw); height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+        h2::after { background: linear-gradient(90deg, var(--gold), transparent); }
+        .bio-item { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); padding-bottom: 22px; text-align: center; }
+        .bio-item:last-child { margin-bottom: 0; border-bottom: 0; padding-bottom: 0; }
+        .circle { width: 86px; height: 86px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); box-shadow: 0 14px 34px rgba(26,26,26,.12); flex: 0 0 auto; }
         .circle img { width: 100%; height: 100%; object-fit: cover; }
-        .name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; display: block; }
-        .exp { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
-        .desc { font-size: 0.85rem; line-height: 1.5; color: #444; max-width: 500px; margin: 0 auto; }
-
-        /* Stats */
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .stat-card { border: 1px solid #ddd; padding: 15px; }
-        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); display: block; }
-        .stat-label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Projects */
-        .project-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #e9e5e0; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; text-align: left; }
-        .icon { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; }
-
-        /* Contacts */
+        .name { font-family: 'Playfair Display', serif; font-size: 1.28rem; font-weight: 700; display: block; }
+        .exp { font-size: 0.68rem; color: var(--gold); text-transform: uppercase; margin: 4px 0 7px; letter-spacing: 1.2px; font-weight: 600; }
+        .desc { font-size: 0.86rem; line-height: 1.65; color: #4c463f; max-width: 590px; margin: 0 auto; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .stat-card { border: 1px solid var(--line); padding: 20px 12px; border-radius: 18px; background: rgba(255,255,255,.42); }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--gold); display: block; }
+        .stat-label { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); }
+        .project-item { display: flex; align-items: center; gap: 14px; padding: 14px; background: rgba(255,255,255,.46); border: 1px solid var(--line); border-radius: 18px; margin-bottom: 10px; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; text-align: left; }
+        .project-item:hover { transform: translateY(-3px); border-color: rgba(184,134,11,.42); box-shadow: 0 16px 34px rgba(26,26,26,.08); }
+        .icon { width: 50px; height: 50px; border-radius: 14px; object-fit: cover; }
         .contact-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 10px; }
-        .contact-text { font-size: 0.95rem; line-height: 1.6; color: #555; max-width: 400px; text-align: center; }
-        .contact-line { width: 50px; height: 2px; background: var(--gold); }
-        .contact-link { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.4rem; 
-            color: var(--black); 
-            text-decoration: none; 
-            transition: 0.3s;
-            border-bottom: 1px solid transparent;
-        }
+        .contact-text { font-size: 0.95rem; line-height: 1.7; color: #555; max-width: 440px; text-align: center; }
+        .contact-line { width: 56px; height: 2px; background: var(--gold); }
+        .contact-link { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--black); text-decoration: none; transition: 0.3s; border-bottom: 1px solid transparent; }
         .contact-link:hover { color: var(--gold); border-bottom: 1px solid var(--gold); }
         .contact-meta { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-top: 10px; }
 
-        @media (min-width: 768px) {
-            .bio-item { flex-direction: row; text-align: left; align-items: flex-start; }
-            .food-ring { max-width: 500px; grid-template-columns: repeat(4, 1fr); }
-            .food-item { width: 120px; height: 120px; }
-            .stats { grid-template-columns: repeat(4, 1fr); }
-        }
+ or a new <style> block -->
+<style>
+    /* ── AUTOREST ── */
+    .ar-badge { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .ar-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 5vw, 2.4rem); margin: 0 0 12px 0; line-height: 1.2; }
+    .ar-lead { font-size: 0.88rem; line-height: 1.7; color: #555; max-width: 560px; margin: 0 auto 24px; }
+
+    .ar-metrics { display: flex; justify-content: center; margin-bottom: 32px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    .ar-metric { padding: 16px 24px; border-right: 1px solid #ddd; flex: 1; }
+    .ar-metric:last-child { border-right: none; }
+    .ar-metric-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); display: block; }
+    .ar-metric-lbl { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1.5px; color: #888; }
+
+    .ar-carousel-wrap { position: relative; overflow: hidden; }
+    .ar-carousel { display: flex; transition: transform 0.45s cubic-bezier(.4,0,.2,1); }
+    .ar-slide { min-width: 100%; box-sizing: border-box; padding: 0 8px; }
+    .ar-card { background: rgba(255,255,255,0.7); border: 1px solid #ddd; border-radius: 12px; padding: 28px 24px; text-align: center; }
+    /* Hand-drawn product glyphs: no platform-dependent emoji, only CSS geometry. */
+    .ar-card-icon {
+        width: 62px; height: 62px; margin: 0 auto 15px; position: relative;
+        display: grid; place-items: center; overflow: hidden;
+        color: var(--gold); background: linear-gradient(135deg, rgba(184,134,11,.16), rgba(184,134,11,.035));
+        border: 1px solid rgba(184,134,11,.36); border-radius: 18px 18px 18px 4px;
+        transform: rotate(-4deg); transition: transform .25s ease, background .25s ease;
+    }
+    .ar-card:hover .ar-card-icon { transform: rotate(0) translateY(-3px); background: rgba(184,134,11,.16); }
+    .ar-card-icon::before, .ar-card-icon::after, .ar-card-icon span { box-sizing: border-box; position: absolute; content: ''; display: block; }
+    .ar-icon--recipe span { width: 21px; height: 28px; border: 1.6px solid currentColor; border-radius: 2px; }
+    .ar-icon--recipe span::before { content: ''; position: absolute; top: 5px; left: 5px; width: 9px; height: 1.5px; background: currentColor; box-shadow: 0 5px 0 currentColor, 0 10px 0 currentColor; }
+    .ar-icon--recipe span::after { content: ''; position: absolute; top: -1.6px; right: -1.6px; width: 7px; height: 7px; border-left: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; background: #f6f1eb; }
+    .ar-icon--stock span { width: 23px; height: 23px; border: 1.6px solid currentColor; transform: rotate(30deg) skewY(-8deg); }
+    .ar-icon--stock span::before { content: ''; position: absolute; inset: 5px; border: 1px solid currentColor; opacity: .65; }
+    .ar-icon--hall span { width: 29px; height: 25px; border: 1.6px solid currentColor; border-radius: 2px; background: linear-gradient(90deg, transparent 47%, currentColor 48%, currentColor 52%, transparent 53%), linear-gradient(0deg, transparent 47%, currentColor 48%, currentColor 52%, transparent 53%); }
+    .ar-icon--hall::after { width: 7px; height: 7px; border: 1.6px solid currentColor; border-radius: 50%; background: #f9f5f0; top: 17px; right: 12px; }
+    .ar-icon--team span { width: 27px; height: 25px; border: 1.6px solid currentColor; border-radius: 3px; }
+    .ar-icon--team span::before { content: ''; position: absolute; left: -1.6px; right: -1.6px; top: 6px; height: 1.6px; background: currentColor; }
+    .ar-icon--team span::after { content: ''; position: absolute; top: 12px; left: 5px; width: 4px; height: 4px; background: currentColor; box-shadow: 7px 0 0 currentColor, 14px 0 0 currentColor, 0 6px 0 currentColor, 7px 6px 0 currentColor; }
+    .ar-icon--team::before { width: 3px; height: 7px; top: 15px; left: 22px; border-radius: 2px; background: currentColor; box-shadow: 15px 0 0 currentColor; }
+    .ar-icon--sync span { width: 27px; height: 27px; border: 1.6px solid currentColor; border-radius: 50%; border-right-color: transparent; transform: rotate(-30deg); }
+    .ar-icon--sync::before { width: 7px; height: 7px; top: 17px; left: 17px; border-left: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(20deg); }
+    .ar-icon--sync::after { width: 7px; height: 7px; right: 16px; bottom: 17px; border-right: 1.6px solid currentColor; border-top: 1.6px solid currentColor; transform: rotate(20deg); }
+    .ar-card-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 10px; }
+    .ar-card-desc { font-size: 0.82rem; line-height: 1.7; color: #555; max-width: 420px; margin: 0 auto 14px; }
+    .ar-card-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+    .ar-tag { font-size: 0.55rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid #ccc; padding: 3px 9px; border-radius: 20px; color: #777; }
+
+    .ar-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+    .ar-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; border: none; padding: 0; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    .ar-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    .ar-nav { display: flex; justify-content: center; gap: 12px; margin-top: 14px; }
+    .ar-btn { background: none; border: 1px solid #ccc; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; color: var(--black); transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+    .ar-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .ar-platforms { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 28px; flex-wrap: wrap; }
+    .ar-platform { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+    .ar-platform { border: 1px solid #d7cec3; border-radius: 20px; padding: 6px 10px; }
+    .ar-platform::before { content: ''; width: 5px; height: 5px; display: inline-block; margin-right: 6px; border-radius: 50%; background: var(--gold); vertical-align: middle; }
+
+    .ar-cta { margin-top: 28px; padding-top: 20px; border-top: 1px solid #ddd; }
+    .ar-cta-text { font-size: 0.82rem; color: #777; margin-bottom: 14px; }
+    .ar-cta-link { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+
+
+    /* Premium AutoRest polish */
+    .autorest-section { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(26,26,26,.92), rgba(52,39,25,.88)); color: #f8f3ed; border-color: rgba(184,134,11,.38); }
+    .autorest-section::before { content: ''; position: absolute; inset: -25%; background: radial-gradient(circle at 20% 15%, rgba(184,134,11,.38), transparent 22%), radial-gradient(circle at 82% 12%, rgba(255,255,255,.10), transparent 20%); pointer-events: none; }
+    .autorest-section > * { position: relative; z-index: 1; }
+    .autorest-section h2 { color: #fff8ef; }
+    .ar-badge { background: rgba(184,134,11,.12); border-color: rgba(184,134,11,.62); color: #d7ae4d; }
+    .ar-title { color: #fff8ef; font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: -.5px; }
+    .ar-lead { color: rgba(248,243,237,.78); max-width: 680px; }
+    .ar-metrics { border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.05); border-radius: 22px; overflow: hidden; }
+    .ar-metric { border-right-color: rgba(255,255,255,.12); }
+    .ar-metric-lbl { color: rgba(248,243,237,.58); }
+    .ar-card { background: rgba(248,243,237,.94); color: var(--black); border: 1px solid rgba(184,134,11,.24); border-radius: 24px; padding: clamp(26px, 4vw, 42px) 24px; box-shadow: 0 26px 60px rgba(0,0,0,.24); }
+    .ar-card-name { font-size: 1.35rem; }
+    .ar-card-desc { max-width: 560px; }
+    .ar-card-tags { margin-top: 18px; }
+    .ar-tag { background: rgba(184,134,11,.08); border-color: rgba(184,134,11,.20); color: #6e5a35; }
+    .ar-dot { background: rgba(255,255,255,.35); }
+    .ar-dot.active { background: var(--gold); }
+    .ar-btn { border-color: rgba(255,255,255,.28); color: #fff8ef; background: rgba(255,255,255,.05); }
+    .ar-btn:hover { border-color: var(--gold); color: #f5d489; }
+    .ar-platform { color: rgba(248,243,237,.74); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.05); }
+    .ar-cta { border-top-color: rgba(255,255,255,.14); }
+    .ar-cta-text { color: rgba(248,243,237,.70); }
+    .ar-cta-link { color: #fff8ef; }
+    @media (min-width: 768px) {
+        .bio-item { flex-direction: row; text-align: left; align-items: flex-start; }
+        .food-ring { max-width: 560px; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .food-item { width: 124px; height: 124px; }
+        .stats { grid-template-columns: repeat(4, 1fr); }
+        .project-item { padding: 16px 18px; }
+    }
+    @media (max-width: 640px) {
+        .ar-metrics { display: grid; grid-template-columns: repeat(2, 1fr); }
+        .ar-metric { border-right: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); }
+        .ar-metric:nth-child(2), .ar-metric:nth-child(4) { border-right: 0; }
+        .ar-metric:nth-child(3), .ar-metric:nth-child(4) { border-bottom: 0; }
+        .contact-link { font-size: 1.18rem; word-break: break-word; }
+    }
+
     </style>
 </head>
 <body>
@@ -121,7 +220,7 @@
             <div>
                 <span class="name">Antonina</span>
                 <div class="exp">Marketing & SMM • 30+ Projects</div>
-                <div class="desc">A visionary behind 30+ turnkey launches. xpert in defining brand DNA, high-impact visual aesthetics, and integrated marketing funnels that drive loyalty and guest traffic.</div>
+                <div class="desc">A visionary behind 30+ turnkey launches. Expert in defining brand DNA, high-impact visual aesthetics, and integrated marketing funnels that drive loyalty and guest traffic.</div>
             </div>
         </div>
     </section>
@@ -163,6 +262,159 @@
             <div class="project-item"><img src="limoncello.png" class="icon"><div><b>Limoncello</b><br>Turnkey launch from conceptualization to the installation of automated accounting.</div></div>
         </a>
     </section>
+
+<section class="autorest-section">
+    <h2>AutoRest</h2>
+
+    <div class="ar-badge">SVOI GROUP PRODUCT</div>
+    <div class="ar-title">One rhythm.<br>Every operation.</div>
+    <div class="ar-lead">AutoRest is our own offline-first operating system for restaurants that want every detail under control and the guest experience untouched. It brings recipes, inventory, service floor and team planning into one shared rhythm — locally reliable, cloud-connected when you need it.</div>
+
+    <div class="ar-metrics">
+        <div class="ar-metric">
+            <span class="ar-metric-val">5</span>
+            <span class="ar-metric-lbl">Core modules</span>
+        </div>
+        <div class="ar-metric">
+            <span class="ar-metric-val">100%</span>
+            <span class="ar-metric-lbl">Offline ready</span>
+        </div>
+        <div class="ar-metric">
+            <span class="ar-metric-val">3</span>
+            <span class="ar-metric-lbl">Platforms</span>
+        </div>
+        <div class="ar-metric">
+            <span class="ar-metric-val">&#8734;</span>
+            <span class="ar-metric-lbl">Locations</span>
+        </div>
+    </div>
+
+    <div class="ar-carousel-wrap">
+        <div class="ar-carousel" id="arCarousel">
+
+            <div class="ar-slide">
+                <div class="ar-card">
+                    <div class="ar-card-icon ar-icon--recipe" aria-hidden="true"><span></span></div>
+                    <div class="ar-card-name">Tech Cards</div>
+                    <div class="ar-card-desc">Digital recipe library with ingredient costs, waste coefficients, step-by-step process instructions, and allergen markers. Cost per serving is calculated automatically — always current, always accurate.</div>
+                    <div class="ar-card-tags">
+                        <span class="ar-tag">Recipe library</span>
+                        <span class="ar-tag">Cost calculation</span>
+                        <span class="ar-tag">Allergen flags</span>
+                        <span class="ar-tag">Photo steps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-slide">
+                <div class="ar-card">
+                    <div class="ar-card-icon ar-icon--stock" aria-hidden="true"><span></span></div>
+                    <div class="ar-card-name">Stock &amp; Inventory</div>
+                    <div class="ar-card-desc">Live stock levels with a full movement journal — receipts, write-offs, breakage, and inventory corrections tracked individually. Monthly statistics by category and printable PDF inventory sheets for manual counts.</div>
+                    <div class="ar-card-tags">
+                        <span class="ar-tag">Live stock</span>
+                        <span class="ar-tag">Movement journal</span>
+                        <span class="ar-tag">Monthly reports</span>
+                        <span class="ar-tag">PDF sheets</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-slide">
+                <div class="ar-card">
+                    <div class="ar-card-icon ar-icon--hall" aria-hidden="true"><span></span></div>
+                    <div class="ar-card-name">Hall &amp; Orders</div>
+                    <div class="ar-card-desc">Drag-and-drop floor plan builder. Waiters open tables, send orders to kitchen and bar stations, print tickets, and close bills — all from the floor. Full event ledger per shift.</div>
+                    <div class="ar-card-tags">
+                        <span class="ar-tag">Floor plan editor</span>
+                        <span class="ar-tag">Station tickets</span>
+                        <span class="ar-tag">Order management</span>
+                        <span class="ar-tag">Shift analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-slide">
+                <div class="ar-card">
+                    <div class="ar-card-icon ar-icon--team" aria-hidden="true"><span></span></div>
+                    <div class="ar-card-name">Staff Scheduling</div>
+                    <div class="ar-card-desc">Weekly Gantt planner with named shift slots, availability collection from staff, zone assignments per shift, and published schedules visible to the whole team. Role-based PIN access for every position.</div>
+                    <div class="ar-card-tags">
+                        <span class="ar-tag">Gantt view</span>
+                        <span class="ar-tag">Zone assignments</span>
+                        <span class="ar-tag">PIN access</span>
+                        <span class="ar-tag">Role-based</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-slide">
+                <div class="ar-card">
+                    <div class="ar-card-icon ar-icon--sync" aria-hidden="true"><span></span></div>
+                    <div class="ar-card-name">Cloud Sync</div>
+                    <div class="ar-card-desc">Local database keeps everything running without any internet connection. Changes sync across all devices the moment a connection is available — nothing is ever lost, nothing ever waits.</div>
+                    <div class="ar-card-tags">
+                        <span class="ar-tag">Offline-first</span>
+                        <span class="ar-tag">Real-time sync</span>
+                        <span class="ar-tag">Multi-device</span>
+                        <span class="ar-tag">Multi-location</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ar-dots" id="arDots">
+        <button class="ar-dot active" onclick="arGoTo(0)"></button>
+        <button class="ar-dot" onclick="arGoTo(1)"></button>
+        <button class="ar-dot" onclick="arGoTo(2)"></button>
+        <button class="ar-dot" onclick="arGoTo(3)"></button>
+        <button class="ar-dot" onclick="arGoTo(4)"></button>
+    </div>
+
+    <div class="ar-nav">
+        <button class="ar-btn" onclick="arStep(-1)">&#8592;</button>
+        <button class="ar-btn" onclick="arStep(1)">&#8594;</button>
+    </div>
+
+    <div class="ar-platforms">
+        <div class="ar-platform">Windows</div>
+        <div class="ar-platform">Android</div>
+        <div class="ar-platform">Web</div>
+    </div>
+
+    <div class="ar-cta">
+        <div class="ar-cta-text">Ready to make your restaurant run as one?</div>
+        <a href="mailto:contact@svoigroup.com" class="ar-cta-link">contact@svoigroup.com</a>
+    </div>
+</section>
+
+<script>
+    (function () {
+        var cur = 0;
+        var total = 5;
+        var carousel = document.getElementById('arCarousel');
+        var dots = document.querySelectorAll('.ar-dot');
+
+        window.arGoTo = function (n) {
+            cur = (n + total) % total;
+            carousel.style.transform = 'translateX(-' + (cur * 100) + '%)';
+            dots.forEach(function (d, i) { d.classList.toggle('active', i === cur); });
+        };
+
+        window.arStep = function (dir) { arGoTo(cur + dir); };
+
+        setInterval(function () { arStep(1); }, 4000);
+
+        var startX = 0;
+        carousel.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', function (e) {
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) arStep(dx < 0 ? 1 : -1);
+        }, { passive: true });
+    })();
+</script>
 
     <section>
         <h2>Contacts</h2>
